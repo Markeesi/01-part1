@@ -40,6 +40,11 @@ p {
   font-size: 2rem;
 }
 
+form input {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
