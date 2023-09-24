@@ -1,16 +1,17 @@
 import Hello from "./Hello";
-import styling from "./App.css"
-import ReactLogo from "./assets/react.svg";
+import "./App.css"
+import MyLogo from "./assets/mylogo.svg";
+import Question from "./components/Question";
+
 
 const App = () => {
     return (
-      <div className={styling}>
+      <div>
         <a >
-            <img src={ReactLogo} className="logo react"></img>
+            <img src={MyLogo} className="logo"></img>
         </a>
         <h1>Greetings</h1>
-        <Hello name="Joni"/>
-        <Hello name="Markku"/>
+        <Question />
       </div>
     )
   }
