@@ -1,33 +1,50 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Hello from "./Hello";
 
+const defaultName = {
+    name: "",
+}
 
 const Who = () => {
+    const [userName, setUserName] = useState(defaultName);
+    const [submitted, setSubmitted] = useState(false);
+    const [prevName, setPrevName] = useState(defaultName);
 
-    const [userName, setUserName] = useState('');
+    const resetUserName = () => {
+        setUserName(defaultName);
+    };
 
-    const handleInputChange = (e) => {
-        setUserName(e.target.value);
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUserName({ ...userName, [name]: value });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setPrevName({ ...userName });
+        resetUserName();
+        setSubmitted(true);
     }
 
     return (
         <div>
-        <p>What is your name?</p>
-        <form>
+            <p>What is your name?</p>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Enter your name"
-                    value={userName}
+                    id="nameInput"
+                    name="name"
                     onChange={handleInputChange}
+                    value={userName.name}
                 />
+                <button type="submit">Submit</button>
             </form>
-            {userName && (
-                <Hello name={userName} />
+            {submitted && (
+                <Hello name={prevName.name} />
             )}
-
         </div>
-    )
-
+    );
 }
 
 export default Who;
